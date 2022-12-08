@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/index.js" type="module"></script>
+    <link rel="shortcut icon" href="#" />
+    <title>CMS system</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__wrapper">
+          <img class="header__logo" src="img/logo.svg" alt="Лого Skb" />
+          <input
+            class="header-search__input"
+            type="text"
+            placeholder="Введите запрос"
+          />
+          <div class="header-search-result"></div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="clients">
+        <div class="container">
+          <div class="clients__wrapper">
+            <h2 class="clients__title">Клиенты</h2>
+            <table class="table clients__table" id="sortable">
+              <thead class="table__head">
+                <tr>
+                  <th scope="col" data-name="id">
+                    <button class="clients-id table-header">
+                      <span class="clients-id__title table-header__title"
+                        >ID</span
+                      >
+                      <span class="clients-id__icon table-header__icon"></span>
+                    </button>
+                  </th>
+                  <th scope="col" data-name="fullname">
+                    <button class="clients-fullname table-header">
+                      <span class="clients-fullname__title table-header__title"
+                        >Фамилия Имя Отчество</span
+                      >
+                      <span
+                        class="clients-fullname__icon table-header__icon"
+                      ></span>
+                    </button>
+                  </th>
+                  <th scope="col" data-name="creation-date">
+                    <button class="clients-creation-date table-header">
+                      <span
+                        class="clients-creation-date__title table-header__title"
+                      >
+                        Дата и время <br />создания
+                      </span>
+                      <span
+                        class="clients-creation-date__icon table-header__icon"
+                      ></span>
+                    </button>
+                  </th>
+                  <th scope="col" data-name="last-change">
+                    <button class="clients-last-change table-header">
+                      <span
+                        class="clients-last-change__title table-header__title"
+                        >Последние<br />
+                        изменения</span
+                      >
+                      <span
+                        class="clients-last-change__icon table-header__icon"
+                      ></span>
+                    </button>
+                  </th>
+                  <th
+                    scope="col"
+                    class="table-header clients-contacts"
+                    data-name="contacts"
+                  >
+                    Контакты
+                  </th>
+                  <th scope="col" class="table-header clients-change">
+                    Действия
+                  </th>
+                  <th scope="col" class="table-header clients-delete"></th>
+                </tr>
+              </thead>
+              <tbody class="table__body" id="table-body"></tbody>
+            </table>
+          </div>
+          <button type="button" class="clients-add__btn">
+            <svg
+              class="clients-add__icon"
+              width="23"
+              height="16"
+              viewBox="0 0 23 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.5 8C16.71 8 18.5 6.21 18.5 4C18.5 1.79 16.71 0 14.5 0C12.29 0 10.5 1.79 10.5 4C10.5 6.21 12.29 8 14.5 8ZM5.5 6V3H3.5V6H0.5V8H3.5V11H5.5V8H8.5V6H5.5ZM14.5 10C11.83 10 6.5 11.34 6.5 14V16H22.5V14C22.5 11.34 17.17 10 14.5 10Z"
+                fill="currentColor"
+              />
+            </svg>
+            Добавить клиента
+          </button>
+        </div>
+      </section>
+
+      <section class="modals" id="modal">
+        <div class="newclient-modal modal">
+          <button class="newclient-modal-close__btn modal-close__btn"></button>
+          <div class="newclient-modal-title__wrap">
+            <h3 class="newclient-modal__title"></h3>
+            <span class="client-modal-id__subtitle"></span>
+            <span class="client-card-id__subtitle"></span>
+          </div>
+          <form class="newclient-modal__form">
+            <div
+              class="newclient-modal-input__wrap modal-input__wrap modal-input-surname"
+            >
+              <input
+                class="newclient-surname surname newclient-modal__input"
+                type="text"
+                id="surname"
+                required="false"
+              />
+              <label
+                class="newclient-modal__label modal-input__label"
+                for="surname"
+                >Фамилия<span class="star">*</span></label
+              >
+            </div>
+            <div
+              class="newclient-modal-input__wrap modal-input__wrap modal-input-name"
+            >
+              <input
+                class="newclient-name name newclient-modal__input"
+                type="text"
+                id="name"
+                required="false"
+              />
+              <label
+                class="newclient-modal__label modal-input__label"
+                for="name"
+                >Имя<span class="star">*</span></label
+              >
+            </div>
+            <div
+              class="newclient-modal-input__wrap modal-input__wrap modal-input-middlename"
+            >
+              <input
+                class="newclient-middlename middlename newclient-modal__input"
+                type="text"
+                id="middlename"
+                required="false"
+              />
+              <label
+                class="newclient-modal__label modal-input__label"
+                for="middlename"
+                >Отчество</label
+              >
+            </div>
+            <div class="newclient-modal-contacts__wrap">
+              <div class="newclient-modal-contacts"></div>
+              <button class="newclient-modal-add__btn">
+                <div class="newclient-modal-add__icon"></div>
+                Добавить контакт
+              </button>
+            </div>
+            <div class="client-modal-validation"></div>
+            <button class="newclient-modal-save__btn">Сохранить</button>
+            <button class="changeclient-modal-save__btn">Сохранить</button>
+            <button type="button" class="deleteclient-modal-cancel__btn">
+              Отмена
+            </button>
+            <button type="button" class="newclient-modal-delete__btn">
+              Удалить клиента
+            </button>
+          </form>
+        </div>
+        <div class="deleteclient-modal modal">
+          <button
+            class="deleteclient-modal-close__btn modal-close__btn"
+          ></button>
+          <h3 class="deleteclient-modal__title">Удалить клиента</h3>
+          <p class="deleteclient-modal__descr">
+            Вы действительно хотите удалить данного клиента?
+          </p>
+          <button class="deleteclient-modal-delete__btn">Удалить</button>
+          <button class="deleteclient-modal-cancel__btn">Отмена</button>
+        </div>
+        <div class="errors modal">
+          <button
+            class="deleteclient-modal-close__btn modal-close__btn"
+          ></button>
+          <h2 class="errors__title"></h2>
+          <p class="errors__descr"></p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
